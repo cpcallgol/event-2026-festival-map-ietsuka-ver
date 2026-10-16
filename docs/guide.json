@@ -1,6 +1,6 @@
 {
   "schemaVersion": 9,
-  "revision": 39,
+  "revision": 40,
   "settings": {
     "title": "紅華祭",
     "subtitle": "ものづくりフェスタ",
@@ -1027,7 +1027,7 @@
       "image": null,
       "x": 35.801,
       "y": 73.25,
-      "size": 200.0,
+      "size": 30.0,
       "rotation": 0.0,
       "layer": 8,
       "locked": false,
@@ -1154,9 +1154,9 @@
       "trimImage": true,
       "guidePin": {
         "markerId": "marker_1792125435492_hneyf5w6",
-        "x": 45.5,
-        "y": 25.5,
-        "size": 10.0
+        "x": 46.5,
+        "y": 25.0,
+        "size": 13.0
       }
     },
     {
@@ -1173,7 +1173,7 @@
       "image": null,
       "x": 45.375,
       "y": 58.037,
-      "size": 30.0,
+      "size": 35.0,
       "rotation": 0.0,
       "layer": 15,
       "locked": false,
