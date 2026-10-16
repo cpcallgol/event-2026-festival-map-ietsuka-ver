@@ -62,7 +62,7 @@ class GuideStorageTests(unittest.TestCase):
     def test_legacy_positions_images_and_items_survive(self):
         original = json.loads(storage.GUIDE_DATA.read_text(encoding="utf-8"))
         result = self.validate()
-        self.assertEqual(result["schemaVersion"], 8)
+        self.assertEqual(result["schemaVersion"], 9)
         self.assertEqual(len(result["items"]), len(original["items"]))
         for old in original["markers"]:
             marker = next(m for m in result["markers"] if m["id"] == old["id"])

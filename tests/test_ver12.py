@@ -34,7 +34,7 @@ class Revision12Tests(unittest.TestCase):
     def test_migration_keeps_manual_numbers_and_existing_guidance_without_writing(self):
         original = storage.GUIDE_DATA.read_bytes()
         raw = json.loads(original)
-        self.assertEqual(self.current["schemaVersion"], 8)
+        self.assertEqual(self.current["schemaVersion"], 9)
         self.assertEqual([(m["id"], m["label"]) for m in self.current["markers"]], [(m["id"], m["label"]) for m in raw["markers"]])
         for item in self.current["items"]:
             before = next(old for old in raw["items"] if old["id"] == item["id"])

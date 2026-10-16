@@ -1,0 +1,25 @@
+<dialog id="recommendationDialog" class="recommendation-dialog" aria-labelledby="recommendationTitle">
+    <header><div><h2 id="recommendationTitle">おすすめの表示設定</h2><p>案内画面の上部に紹介する企画と、見せ方を変更できます。</p></div><button type="button" id="recommendationClose" aria-label="おすすめの設定を取り消す">×</button></header>
+    <div class="recommendation-settings-grid">
+        <section class="recommendation-options" aria-label="おすすめの見せ方">
+            <label class="recommendation-check"><input id="recommendEnabled" type="checkbox">おすすめを表示する</label>
+            <label>見出し<input id="recommendTitle" type="text" maxlength="40" required></label>
+            <div class="recommendation-colors"><label>見出し・枠<input id="recommendAccent" type="color"></label><label>背景<input id="recommendBackground" type="color"></label><label>文字<input id="recommendText" type="color"></label></div>
+            <label class="recommendation-check"><input id="recommendAuto" type="checkbox">自動で切り替える</label>
+            <label>切り替え間隔（秒）<input id="recommendInterval" type="number" min="1" max="120" step="1" required></label>
+            <p class="recommendation-note">1〜120秒で設定できます。自動切り替えを外すと、案内画面の左右のボタンで切り替えます。</p>
+            <button id="recommendReset" type="button">表示設定を初期値に戻す</button>
+        </section>
+        <section class="recommendation-entries" aria-label="おすすめで紹介する企画">
+            <fieldset class="recommendation-mode"><legend>表示する企画</legend><label><input type="radio" name="recommendMode" id="recommendAll" value="all">すべての模擬店（追加分も自動で含める）</label><label><input type="radio" name="recommendMode" id="recommendSelected" value="selected">企画を選ぶ・表示順を変える</label></fieldset>
+            <p class="recommendation-note">紹介文を直接編集できます。空欄の場合は企画の説明文を表示します。</p>
+            <div id="recommendItemList" class="recommendation-item-list"></div>
+        </section>
+    </div>
+    <section class="recommendation-preview" id="recommendPreview" aria-label="おすすめの表示プレビュー">
+        <header><strong id="recommendPreviewTitle"></strong><span id="recommendPreviewCounter"></span></header>
+        <div class="recommendation-preview-body"><button id="recommendPreviewPrevious" type="button" aria-label="前のプレビュー">‹</button><div id="recommendPreviewContent"></div><button id="recommendPreviewNext" type="button" aria-label="次のプレビュー">›</button></div>
+    </section>
+    <p id="recommendError" class="recommendation-error" role="alert" hidden></p>
+    <footer><p>「決定」の後に「すべて保存」で反映します。</p><div><button type="button" id="recommendationCancel">取り消し</button><button type="button" id="recommendationConfirm" class="primary">決定</button></div></footer>
+</dialog>

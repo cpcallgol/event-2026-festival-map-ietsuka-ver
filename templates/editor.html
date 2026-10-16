@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/editor-ver8.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/placement-ver9.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/features-ver12.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/recommendations-ver13.css') }}">
+    <script defer src="{{ url_for('static', filename='js/recommendations.js') }}"></script>
+    <script defer src="{{ url_for('static', filename='js/recommendation_editor.js') }}"></script>
     <script defer src="{{ url_for('static', filename='js/guide_pin.js') }}"></script>
     <script defer src="{{ url_for('static', filename='js/guide_pin_editor.js') }}"></script>
     <script defer src="{{ url_for('static', filename='js/marker_images.js') }}"></script>
@@ -26,6 +29,7 @@
         <div class="editor-brand"><span class="brand-mark">紅</span><div><small>POLYTECH FESTA</small><h1>案内マップ作成</h1></div></div>
         <div id="saveState" class="save-state" role="status">読み込み中</div>
         <nav class="header-actions" aria-label="保存と確認">
+            <button type="button" id="recommendationButton">おすすめ設定</button>
             <button type="button" id="categoryManagerButton">カテゴリー管理</button>
             <button type="button" id="floorEditorButton">フロア図編集</button>
             <button type="button" id="previewButton">案内画面を確認</button>
@@ -131,6 +135,7 @@
 {% include 'image_upload_dialog.html' %}
 {% include 'editor_exit_dialog.html' %}
 {% include 'guide_pin_dialog.html' %}
+{% include 'recommendation_dialog.html' %}
 <dialog id="categoryManagerDialog" class="category-manager-dialog" aria-labelledby="categoryManagerTitle">
     <header><div><h2 id="categoryManagerTitle">カテゴリー管理</h2><p>追加・変更・削除した後は「すべて保存」を押してください。</p></div><button id="closeCategoryManager" type="button" aria-label="カテゴリー管理を閉じる">×</button></header>
     <div id="categoryManagerList" class="category-manager-list"></div>

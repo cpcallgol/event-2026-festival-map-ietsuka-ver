@@ -112,6 +112,7 @@ function updateControls() {
     $("trimImageInput").disabled = blocked || !imageSelected;
     $("trimImageInput").checked = imageSelected && marker.trimImage !== false;
     $("categoryManagerButton").disabled = blocked;
+    $("recommendationButton").disabled = blocked;
     if (state.guide) {
         $("facilityButton").disabled = blocked || !state.guide.categories.some((entry) => entry.area === "facility");
         $("pinButton").disabled = blocked || !state.guide.categories.some((entry) => entry.area !== "facility");
@@ -488,7 +489,7 @@ function confirmDraft(event) {
     item.experienceInfoEnabled = item.type !== "facility" && $("experienceInfoEnabledInput").checked;
     if (item.type === "facility") {
         item.department = ""; item.grade = ""; item.organization = ""; item.organizer = ""; item.description = ""; item.detailsVersion = 3;
-        for (const field of ["duration", "schedule", "targetAudience", "capacity", "catchCopy"]) item[field] = "";
+        for (const field of ["duration", "schedule", "targetAudience", "capacity"]) item[field] = "";
     } else {
         item.organizer = item.department === "その他" ? item.organization : item.grade ? `${item.department} ${item.grade}年` : item.department;
         item.detailsVersion = 2;
@@ -829,6 +830,14 @@ function deleteCategory() {
 }
 
 function bindEvents() {
+    $("recommendationButton").addEventListener("click", async () => {
+        if (state.busy || state.draft || state.numbering || !state.guide) return;
+        const choice = await RecommendationEditor.choose(state.guide);
+        if (!choice) return;
+        state.guide.settings.recommendations = choice.settings;
+        state.guide.items.forEach((item) => { if (Object.hasOwn(choice.copies, item.id)) item.catchCopy = choice.copies[item.id]; });
+        markDirty(); toast("おすすめの表示設定を変更しました。「すべて保存」で反映されます。");
+    });
     $("experienceInfoEnabledInput").addEventListener("change", syncExperienceInfo);
     $("guidePinButton").addEventListener("click", async () => {
         const marker = markerById(state.selectedMarkerId);

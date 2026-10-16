@@ -17,7 +17,8 @@ const state = {
 
 const VIEWER_LAYOUT = document.body.dataset.layout || "plan1";
 let floorOverlayView, floorDialogView, catchCopyTimer;
-let catchCopyPaused = false;
+let catchCopyHovered = false, catchCopyFocused = false;
+let catchCopyTimerKey = "";
 
 const elements = {
     screenShell: document.getElementById("screenShell"),
@@ -197,15 +198,21 @@ function createItemVisual(item, className = "") {
 
 function renderSettings() {
     const settings = state.guide.settings;
-    document.title = `${settings.title} キャンパスガイド`;
+    document.title = settings.windowTitle || "ものづくり＆紅華祭";
     elements.brandTitle.textContent = settings.title;
     elements.brandSubtitle.textContent = settings.subtitle;
+    const recommendations = Recommendations.settings(state.guide);
+    Recommendations.paint(document.getElementById("catchCopyBand"), recommendations);
+    document.getElementById("catchCopyTitle").textContent = recommendations.title;
+    document.getElementById("catchCopyBand").setAttribute("aria-label", recommendations.title);
+    configureCatchCopyTimer(recommendations);
     elements.instructionText.textContent = settings.instruction;
     const mapUrl = assetUrl(settings.mapImage);
     if (elements.campusMap.getAttribute("src") !== mapUrl) elements.campusMap.src = mapUrl;
     elements.schoolQr.src = assetUrl(settings.schoolQr);
     elements.instagramQr.src = assetUrl(settings.instagramQr);
-    elements.kioskCanvas.style.setProperty("--ui-background", `url("${assetUrl(settings.backgroundImage)}")`);
+    const backgroundUrl = new URL(assetUrl(settings.backgroundImage), document.baseURI).href;
+    elements.kioskCanvas.style.setProperty("--ui-background", `url("${backgroundUrl}")`);
 }
 
 function renderCategories() {
@@ -412,14 +419,28 @@ function renderOfficialInfo() {
     elements.detailPanel.classList.toggle("is-official-hidden", !shouldShow);
 }
 
-function stallItems() {
-    return state.guide.items.filter((item) => item.type === "stall");
+function recommendedItems() {
+    return Recommendations.items(state.guide);
+}
+function configureCatchCopyTimer(config) {
+    const key = JSON.stringify([config.enabled, config.autoRotate, config.intervalSeconds, config.itemIds]);
+    if (key === catchCopyTimerKey) return;
+    catchCopyTimerKey = key; state.catchCopyIndex = 0;
+    clearInterval(catchCopyTimer); catchCopyTimer = null;
+    if (VIEWER_LAYOUT !== "plan2" || !config.enabled || !config.autoRotate) return;
+    catchCopyTimer = setInterval(() => {
+        if (state.guide && state.selectedCategory === "all" && !catchCopyHovered && !catchCopyFocused && motionEnabled() && !document.hidden && recommendedItems().length > 1) {
+            state.catchCopyIndex++; updateCatchCopy();
+        }
+    }, config.intervalSeconds * 1000);
 }
 function updateCatchCopy() {
-    const items = stallItems();
+    const items = recommendedItems();
     const host = document.getElementById("catchCopyContent");
+    for (const id of ["catchCopyPrevious", "catchCopyNext"]) document.getElementById(id).disabled = items.length < 2;
     if (!items.length) {
         host.replaceChildren(); host.textContent = "企画画像やマップのピンをタッチしてください。"; host.disabled = true;
+        delete host.dataset.itemId;
         document.getElementById("catchCopyCounter").textContent = ""; return;
     }
     state.catchCopyIndex = ((state.catchCopyIndex % items.length) + items.length) % items.length;
@@ -435,7 +456,9 @@ function renderLayout() {
     if (VIEWER_LAYOUT !== "plan2") return;
     const selected = state.selectedCategory !== "all" && categoryById(state.selectedCategory);
     document.body.classList.toggle("has-venue-selection", Boolean(selected));
-    document.getElementById("catchCopyBand").hidden = Boolean(selected);
+    const recommendations = Recommendations.settings(state.guide);
+    document.getElementById("catchCopyBand").hidden = Boolean(selected) || !recommendations.enabled;
+    document.body.classList.toggle("recommendations-hidden", !recommendations.enabled);
     document.getElementById("venueBand").hidden = !selected;
     if (selected) {
         const band = document.getElementById("venueBand");
@@ -777,19 +800,16 @@ function bindEvents() {
         selectCategory("all");
     });
     const band = document.getElementById("catchCopyBand");
-    band.addEventListener("pointerenter", () => catchCopyPaused = true);
-    band.addEventListener("pointerleave", () => catchCopyPaused = false);
-    band.addEventListener("focusin", () => catchCopyPaused = true);
-    band.addEventListener("focusout", () => catchCopyPaused = false);
+    band.addEventListener("pointerenter", () => catchCopyHovered = true);
+    band.addEventListener("pointerleave", () => catchCopyHovered = false);
+    band.addEventListener("focusin", () => catchCopyFocused = true);
+    band.addEventListener("focusout", (event) => catchCopyFocused = band.contains(event.relatedTarget));
     const change = (direction) => { state.catchCopyIndex += direction; updateCatchCopy(); };
     document.getElementById("catchCopyPrevious").addEventListener("click", () => change(-1));
     document.getElementById("catchCopyNext").addEventListener("click", () => change(1));
     document.getElementById("catchCopyContent").addEventListener("click", (event) => {
         const id = event.currentTarget.dataset.itemId; if (id) selectItem(id, "all");
     });
-    if (VIEWER_LAYOUT === "plan2") catchCopyTimer = setInterval(() => {
-        if (state.guide && state.selectedCategory === "all" && !catchCopyPaused && motionEnabled() && !document.hidden) change(1);
-    }, 7000);
 }
 
 async function start() {

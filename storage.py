@@ -63,6 +63,7 @@ FLOOR_PLAN_DEFINITIONS = (
     ("main_floor1", "本館1階", "本館", "1", "floors/本館1階.png"),
     ("main_floor2", "本館2階", "本館", "2", "floors/本館2階.png"),
     ("main_floor3", "本館3階", "本館", "3", "floors/本館3階.png"),
+    ("gym", "体育館", "体育館", "", "floors/体育館.png"),
 )
 ALLOWED_FLOOR_MARKER_KINDS = {"item", "facility", "image", "text"}
 DEFAULT_FLOOR_OVERLAY = {"x": 2.0, "y": 50.0, "width": 42.0}
@@ -72,6 +73,11 @@ EXTRA_ITEM_FIELDS = {"duration": 80, "schedule": 120, "targetAudience": 120, "ca
 SIGN_MARKER_ID = "marker_1792048474437_lijuhiur"
 HEADQUARTERS_PIN_ID = "marker_1792125435492_hneyf5w6"
 DEFAULT_GUIDE_PIN_POSITION = {"x": 45.5, "y": 25.5, "size": 10.0}
+DEFAULT_RECOMMENDATIONS = {
+    "enabled": True, "title": "模擬店のおすすめ", "accentColor": "#168650",
+    "backgroundColor": "#fffdf7", "textColor": "#392b26",
+    "autoRotate": True, "intervalSeconds": 7, "itemIds": None,
+}
 
 
 class RevisionConflict(ValueError):
@@ -87,6 +93,15 @@ def upgrade_guide(source: dict[str, Any]) -> dict[str, Any]:
     """Read older data without overwriting it; persist the latest form on an explicit save."""
     guide = deepcopy(source)
     settings = guide.setdefault("settings", {})
+    if settings.get("subtitle", "POLYTECH FESTA").strip().upper() == "POLYTECH FESTA":
+        settings["subtitle"] = "ものづくりフェスタ"
+    settings.setdefault("windowTitle", "ものづくり＆紅華祭")
+    recommendations = settings.get("recommendations")
+    settings["recommendations"] = {**DEFAULT_RECOMMENDATIONS, **(recommendations if isinstance(recommendations, dict) else {})}
+    selected = settings["recommendations"].get("itemIds")
+    if isinstance(selected, list):
+        available = {item["id"] for item in guide["items"]}
+        settings["recommendations"]["itemIds"] = list(dict.fromkeys(item_id for item_id in selected if isinstance(item_id, str) and item_id in available))
     raw_overlay = settings.get("floorOverlay")
     if not isinstance(raw_overlay, dict):
         raw_overlay = {}
@@ -158,7 +173,7 @@ def upgrade_guide(source: dict[str, Any]) -> dict[str, Any]:
             sign["guidePin"] = {"markerId": target["id"], **DEFAULT_GUIDE_PIN_POSITION}
     for marker in guide["markers"]:
         marker.setdefault("guidePin", None)
-    guide["schemaVersion"] = 8
+    guide["schemaVersion"] = 9
     return guide
 
 
@@ -317,7 +332,8 @@ def validate_guide(payload: Any, current: dict[str, Any]) -> dict[str, Any]:
         current_settings = {}
     settings = {
         "title": _text(raw_settings.get("title", current_settings.get("title", "紅華祭")), "タイトル", 40),
-        "subtitle": _text(raw_settings.get("subtitle", current_settings.get("subtitle", "POLYTECH FESTA")), "英字タイトル", 60),
+        "subtitle": _text(raw_settings.get("subtitle", current_settings.get("subtitle", "ものづくりフェスタ")), "サブタイトル", 60),
+        "windowTitle": _text(raw_settings.get("windowTitle", current_settings.get("windowTitle", "ものづくり＆紅華祭")), "ウィンドウタイトル", 60),
         "school": _text(raw_settings.get("school", current_settings.get("school", "中国職業能力開発大学校")), "学校名", 80),
         "instruction": _text(raw_settings.get("instruction", current_settings.get("instruction", "画面をタッチしてください")), "案内文", 100),
         "mapImage": _asset_path(current_settings.get("mapImage"), required=True),
@@ -417,6 +433,36 @@ def validate_guide(payload: Any, current: dict[str, Any]) -> dict[str, Any]:
             item.update(_facility_details(raw, previous_items.get(item_id)))
         items.append(item)
         item_by_id[item_id] = item
+
+    raw_recommendations = raw_settings.get("recommendations", current_settings.get("recommendations", DEFAULT_RECOMMENDATIONS))
+    if not isinstance(raw_recommendations, dict):
+        raise ValueError("おすすめの設定が正しくありません。")
+    recommendations = {**DEFAULT_RECOMMENDATIONS, **raw_recommendations}
+    for field in ("enabled", "autoRotate"):
+        if not isinstance(recommendations[field], bool):
+            raise ValueError("おすすめの表示・自動切り替え設定が正しくありません。")
+    interval = _number(recommendations["intervalSeconds"], "おすすめの切り替え間隔", 1, 120, 3)
+    if interval != int(interval):
+        raise ValueError("おすすめの切り替え間隔は1〜120秒の整数で入力してください。")
+    selected = recommendations["itemIds"]
+    if selected is not None:
+        if not isinstance(selected, list) or len(selected) > 500 or any(not isinstance(item_id, str) for item_id in selected) or len(set(selected)) != len(selected):
+            raise ValueError("おすすめに表示する企画の一覧が正しくありません。")
+        valid_selected = []
+        for item_id in selected:
+            _id(item_id, "おすすめの企画")
+            if item_id not in item_by_id:
+                if item_id in previous_items:
+                    continue  # Deleting a previously selected event also removes its reference.
+                raise ValueError("おすすめに表示する企画が見つかりません。")
+            valid_selected.append(item_id)
+        selected = valid_selected
+    settings["recommendations"] = {
+        "enabled": recommendations["enabled"], "autoRotate": recommendations["autoRotate"],
+        "intervalSeconds": int(interval), "itemIds": selected,
+        "title": _text(recommendations["title"], "おすすめの見出し", 40),
+        **{field: _color(recommendations[field], "おすすめの色") for field in ("accentColor", "backgroundColor", "textColor")},
+    }
 
     raw_markers = raw_guide.get("markers")
     if not isinstance(raw_markers, list) or len(raw_markers) > 800:
@@ -611,7 +657,7 @@ def validate_guide(payload: Any, current: dict[str, Any]) -> dict[str, Any]:
         })
 
     return {
-        "schemaVersion": 8,
+        "schemaVersion": 9,
         "revision": current.get("revision", 0) + 1,
         "settings": settings,
         "categories": categories,
