@@ -1,6 +1,6 @@
 {
   "schemaVersion": 8,
-  "revision": 30,
+  "revision": 31,
   "settings": {
     "title": "紅華祭",
     "subtitle": "POLYTECH FESTA",
@@ -89,8 +89,8 @@
       "department": "",
       "grade": "",
       "organization": "",
-      "building": "5",
-      "floor": "1",
+      "building": "屋外",
+      "floor": "",
       "detailsVersion": 3
     },
     {
@@ -887,8 +887,8 @@
       "label": "",
       "color": "#3274b6",
       "image": "uploads/8d57dc2b8e06_image.png",
-      "x": 58.206,
-      "y": 52.87,
+      "x": 58.814,
+      "y": 48.107,
       "size": 28.0,
       "rotation": 0.0,
       "layer": 3,
