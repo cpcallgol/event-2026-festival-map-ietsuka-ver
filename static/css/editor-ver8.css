@@ -1,0 +1,39 @@
+.header-actions button { font-size: 12px; padding: 7px 12px; }
+.marker-tools { gap: 8px; min-width: 0; }
+.toolbar-message { min-width: 60px; font-size: 9px; }
+.has-panel .creation-tools .pin-choice, .has-panel .creation-tools .image-add, .has-panel .floor-overlay-button { width: 120px; }
+.has-panel .map-toolbar { left: 390px; }
+.has-panel .marker-tools { min-width: 0; gap: 5px; }
+.has-panel .marker-tools .renumber-button { font-size: 9px; padding: 4px; }
+.callout-control { display: flex; align-items: center; gap: 4px; font-size: 10px; white-space: nowrap; cursor: pointer; }
+.callout-control input { width: 16px; height: 16px; min-height: 16px; margin: 0; }
+.has-panel .marker-tools .callout-control { font-size: 9px; }
+.extra-detail-fields { display: flex; flex-direction: column; gap: 8px; padding: 10px; margin: 2px 0; border: 1px solid #d7cabc; border-radius: 12px; flex: none; }
+.extra-detail-fields legend { padding: 0 5px; color: #9e3754; font-size: 13px; font-weight: 800; }
+.extra-detail-fields label, #catchCopyField { font-size: 13px; }
+.extra-detail-fields input { font-size: 14px; min-height: 38px; }
+.category-manager-dialog { width: 720px; max-width: calc(100vw - 28px); max-height: calc(100vh - 32px); overflow: auto; }
+.category-manager-dialog header { display: flex; gap: 12px; justify-content: space-between; align-items: flex-start; }
+.category-manager-dialog h2 { margin: 0 0 8px; font-size: 23px; }
+.category-manager-dialog header p { margin: 0 0 18px; font-size: 13px; line-height: 1.5; }
+.category-manager-dialog header > button { font-size: 23px; min-width: 42px; }
+.category-manager-list { display: flex; flex-direction: column; gap: 8px; max-height: 240px; overflow: auto; }
+.category-manager-row { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto 64px 64px; gap: 10px; align-items: center; padding: 10px; background: #fff; border: 1px solid #e5d4c7; border-radius: 10px; }
+.category-manager-swatch { width: 22px; height: 22px; border-radius: 5px; }
+.category-manager-row strong { font-size: 15px; overflow-wrap: anywhere; }
+.category-manager-row small { font-size: 11px; color: #7a675a; }
+.category-manager-row button { padding: 5px 8px; font-size: 12px; }
+.category-edit-form { margin-top: 18px; padding-top: 10px; border-top: 1px solid #e5d4c7; }
+.category-edit-form h3 { margin: 0 0 10px; font-size: 17px; }
+.category-edit-form > label { display: block; margin: 10px 0; font-size: 13px; }
+.category-form-row { display: grid; grid-template-columns: 1fr 90px; gap: 15px; }
+.category-form-row label { font-size: 13px; }
+.category-edit-form input, .category-edit-form select { width: 100%; margin-top: 5px; font-size: 15px; }
+.category-edit-form input[type=color] { height: 42px; padding: 4px; }
+.category-edit-form footer, .category-delete-dialog footer { display: flex; justify-content: space-between; gap: 18px; margin-top: 18px; }
+.category-delete-dialog { width: 470px; max-width: calc(100vw - 28px); }
+.category-delete-dialog h2 { margin-top: 0; font-size: 22px; }
+.category-delete-dialog p { font-size: 14px; line-height: 1.65; }
+.category-delete-dialog label { display: block; font-size: 14px; }
+.category-delete-dialog select { width: 100%; margin-top: 6px; }
+

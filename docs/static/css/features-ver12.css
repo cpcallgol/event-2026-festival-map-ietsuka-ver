@@ -1,0 +1,25 @@
+.experience-info-toggle { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 800; padding: 8px 0; }
+.experience-info-toggle input { width: 20px; height: 20px; min-height: 20px; margin: 0; }
+.sign-guide-pin { position: absolute; z-index: 4; width: calc(var(--guide-pin-size) * .7142857); height: var(--guide-pin-size); transform: translate(-50%, -50%); pointer-events: none; user-select: none; }
+.sign-guide-pin > svg { display: block; width: 100%; height: 100%; pointer-events: none; }
+.guide-pin-dialog { width: 580px; max-width: calc(100vw - 28px); max-height: calc(100vh - 28px); overflow: auto; padding: 23px; }
+.guide-pin-dialog header { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; }
+.guide-pin-dialog h2 { font-size: 23px; margin: 0 0 9px; }
+.guide-pin-dialog header p, #guidePinHelp { font-size: 13px; line-height: 1.65; margin: 0 0 14px; }
+.guide-pin-dialog header button { font-size: 24px; min-width: 42px; }
+.guide-pin-enabled { display: flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 800; margin: 10px 0 15px; }
+.guide-pin-enabled input { width: 22px; height: 22px; min-height: 22px; margin: 0; }
+.guide-pin-preview { display: flex; align-items: center; justify-content: center; min-height: 180px; padding: 14px; border: 1px solid #d7cbbc; border-radius: 12px; overflow: hidden; }
+.guide-pin-preview-stage { position: relative; flex: none; max-width: 100%; }
+.guide-pin-preview-stage > img { display: block; width: 100%; height: auto; pointer-events: none; }
+.guide-pin-preview-stage .sign-guide-pin { pointer-events: auto; cursor: grab; touch-action: none; filter: drop-shadow(0 1px 2px #0006); }
+.guide-pin-preview-stage .sign-guide-pin:active { cursor: grabbing; }
+#guidePinControls { padding: 15px 0; border: 0; }
+#guidePinControls > label { display: block; font-size: 14px; }
+#guidePinTarget { width: 100%; margin-top: 6px; }
+.guide-pin-position { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 13px 0; }
+.guide-pin-position label { font-size: 12px; }
+.guide-pin-position input { width: 100%; margin-top: 6px; }
+#guidePinReset { font-size: 12px; min-height: 34px; padding: 6px 12px; }
+.guide-pin-dialog footer { display: flex; justify-content: space-between; gap: 20px; margin-top: 15px; }
+.guide-pin-dialog footer button { min-width: 100px; }

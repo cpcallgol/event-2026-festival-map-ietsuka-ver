@@ -1,0 +1,9 @@
+<dialog id="imageUploadDialog" class="image-upload-dialog" aria-labelledby="imageUploadTitle">
+    <header><div><h2 id="imageUploadTitle">追加する画像を確認</h2><p id="imageUploadName"></p></div><button type="button" id="imageUploadClose" aria-label="画像の追加を取り消す">×</button></header>
+    <div class="upload-preview checkerboard"><canvas id="imageUploadPreview" aria-label="画像の背景透過プレビュー"></canvas></div>
+    <label class="upload-check"><input id="imageUploadTransparent" type="checkbox">背景を透過する</label>
+    <div id="imageUploadToleranceRow" hidden><p>背景の切り抜きは100％固定です。画像の必要な部分が消えていないか、プレビューで確認してください。</p></div>
+    <p id="imageUploadStatus" role="status"></p>
+    <footer><button type="button" id="imageUploadCancel">取り消し</button><button type="button" id="imageUploadConfirm" class="primary">この画像を追加</button></footer>
+</dialog>
+

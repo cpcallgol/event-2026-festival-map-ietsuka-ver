@@ -1,0 +1,10 @@
+.floor-area { position: absolute; top: 140px; right: 128px; display: block; }
+.floor-zoom-tools { position: absolute; top: 88px; right: 145px; left: 20px; display: flex; justify-content: flex-end; align-items: center; gap: 7px; height: 42px; }
+.floor-zoom-tools > span { margin-right: auto; color: #42616f; font-size: 13px; font-weight: 800; }
+.floor-zoom-tools button { min-width: 44px; min-height: 38px; padding: 4px 10px; font-size: 19px; }
+.floor-zoom-tools #floorZoomReset { font-size: 13px; }
+.floor-zoom-tools output { min-width: 50px; text-align: center; font-size: 12px; font-weight: 800; }
+.floor-item-card { display: block; }
+.floor-item-card img { display: block; width: 100%; height: var(--size); border-width: 4px; }
+.floor-marker img { pointer-events: none; }
+
