@@ -1,6 +1,6 @@
 {
   "schemaVersion": 8,
-  "revision": 31,
+  "revision": 32,
   "settings": {
     "title": "紅華祭",
     "subtitle": "POLYTECH FESTA",
@@ -135,8 +135,8 @@
       "department": "",
       "grade": "",
       "organization": "",
-      "building": "5",
-      "floor": "1",
+      "building": "屋外",
+      "floor": "",
       "detailsVersion": 3
     },
     {
