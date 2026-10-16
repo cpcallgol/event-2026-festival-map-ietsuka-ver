@@ -1,6 +1,6 @@
 {
   "schemaVersion": 9,
-  "revision": 40,
+  "revision": 43,
   "settings": {
     "title": "紅華祭",
     "subtitle": "ものづくりフェスタ",
@@ -1173,7 +1173,7 @@
       "image": null,
       "x": 45.375,
       "y": 58.037,
-      "size": 35.0,
+      "size": 200.0,
       "rotation": 0.0,
       "layer": 15,
       "locked": false,
