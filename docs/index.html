@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#9b3124">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="紅華祭マップ">
+    <link rel="manifest" href="static/manifest.json">
+    <link rel="apple-touch-icon" href="static/images/ui/app-icon-180.png">
     <title>ものづくり＆紅華祭</title>
     <link rel="stylesheet" href="static/css/viewer.css">
     <link rel="stylesheet" href="static/css/adopted-viewer.css">
@@ -31,6 +37,7 @@
                     </div>
                 </div>
                 <div class="top-message"><i aria-hidden="true"></i><span id="instructionText">画面をタッチしてください</span></div>
+                <button class="fullscreen-button" id="fullscreenButton" type="button" aria-pressed="false" hidden><b aria-hidden="true">⛶</b><span>全画面</span></button>
                 <button class="reset-button" id="resetAllButton" type="button"><b aria-hidden="true">⌂</b>最初に戻る</button>
             </header>
 

@@ -786,8 +786,32 @@ async function refreshGuide() {
     }
 }
 
+function setupFullscreenButton() {
+    const button = document.getElementById("fullscreenButton");
+    const root = document.documentElement;
+    const request = root.requestFullscreen || root.webkitRequestFullscreen;
+    const exit = document.exitFullscreen || document.webkitExitFullscreen;
+    const launchedFromHomeScreen = navigator.standalone || matchMedia("(display-mode: standalone), (display-mode: fullscreen)").matches;
+    if (!request || !exit || launchedFromHomeScreen) return;
+    const active = () => Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+    const sync = () => {
+        button.querySelector("span").textContent = active() ? "全画面を解除" : "全画面";
+        button.setAttribute("aria-pressed", String(active()));
+        requestAnimationFrame(fitCanvas);
+    };
+    button.addEventListener("click", () => {
+        const result = active() ? exit.call(document) : request.call(root);
+        result?.catch?.(() => {});
+    });
+    document.addEventListener("fullscreenchange", sync);
+    document.addEventListener("webkitfullscreenchange", sync);
+    button.hidden = false;
+    sync();
+}
+
 function bindEvents() {
     initializeFloorViews();
+    setupFullscreenButton();
     syncMotionControl();
     matchMedia("(prefers-reduced-motion: reduce)").addEventListener("change", syncMotionControl);
     window.addEventListener("resize", () => { fitCanvas(); if (document.getElementById("floorDialog").open) floorDialogView.resize(); });

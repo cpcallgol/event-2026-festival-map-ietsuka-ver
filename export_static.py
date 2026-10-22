@@ -97,7 +97,7 @@ def export() -> None:
     for folder in IMAGE_FOLDERS:
         source = STATIC_IMAGE_DIR / folder
         if source.exists():
-            shutil.copytree(source, OUTPUT_DIR / "static" / "images" / folder)
+            shutil.copytree(source, OUTPUT_DIR / "static" / "images" / folder, dirs_exist_ok=True)
     export_marker_images(client, guide)
 
     (OUTPUT_DIR / ".nojekyll").write_text("", encoding="utf-8")

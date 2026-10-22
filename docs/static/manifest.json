@@ -1,0 +1,14 @@
+{
+  "name": "ものづくり＆紅華祭 案内マップ",
+  "short_name": "紅華祭マップ",
+  "start_url": "../",
+  "scope": "../",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#2f2824",
+  "theme_color": "#9b3124",
+  "icons": [
+    {"src": "images/ui/app-icon-180.png", "sizes": "180x180", "type": "image/png"},
+    {"src": "images/ui/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"}
+  ]
+}
