@@ -1,6 +1,6 @@
 {
   "schemaVersion": 9,
-  "revision": 51,
+  "revision": 52,
   "settings": {
     "title": "紅華祭",
     "subtitle": "ものづくりフェスタ",
@@ -103,14 +103,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "",
       "grade": "",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 3,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 3
     },
     {
       "id": "item_1790923545628_z8ltg4cy",
@@ -128,14 +128,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "",
       "grade": "",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 3,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 3
     },
     {
       "id": "item_1790923741437_aus2gauq",
@@ -153,14 +153,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "",
       "grade": "",
       "organization": "",
       "building": "1",
       "floor": "1",
-      "detailsVersion": 3,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 3
     },
     {
       "id": "item_1790923790146_nif3k612",
@@ -178,14 +178,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "",
       "grade": "",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 3,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 3
     },
     {
       "id": "item_1790923819246_78fdsq6a",
@@ -203,14 +203,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "",
       "grade": "",
       "organization": "",
       "building": "本館",
       "floor": "2",
-      "detailsVersion": 3,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 3
     },
     {
       "id": "item_1790923873326_zbryjcql",
@@ -228,14 +228,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "専門機械",
       "grade": "1",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1790923938530_ndadsr2k",
@@ -253,14 +253,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "専門機械",
       "grade": "2",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1790924013897_a76trhnk",
@@ -278,14 +278,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "専門電気",
       "grade": "1",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1790924130023_t9gefmnl",
@@ -303,14 +303,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "専門電気",
       "grade": "2",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1790924260764_qt4z6lb1",
@@ -328,14 +328,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "専門電子",
       "grade": "1",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1790924301611_3ked9lij",
@@ -353,14 +353,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "専門電子",
       "grade": "2",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1790924337974_5traomo1",
@@ -378,14 +378,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "応用機械",
       "grade": "1",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1790924399979_yratxu0i",
@@ -403,14 +403,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "応用機械",
       "grade": "2",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1790924501580_fry5me7q",
@@ -428,14 +428,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "応用電気",
       "grade": "1",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1790924565869_2zvqviwg",
@@ -453,14 +453,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "応用電気",
       "grade": "2",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1790924620027_a5ckox4k",
@@ -478,14 +478,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "応用電子",
       "grade": "1",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1790925447596_bsz3r927",
@@ -503,14 +503,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": true,
+      "ticketEnabled": true,
+      "ticketUrl": "https://makosana.github.io/koukasai_seiriken/",
       "department": "応用電気",
       "grade": "",
       "organization": "",
       "building": "1",
       "floor": "3",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1790925506686_o2pu2n4s",
@@ -528,14 +528,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": true,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "専門電子",
       "grade": "",
       "organization": "",
       "building": "1",
       "floor": "4",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1790925592206_e4thgwz5",
@@ -553,14 +553,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": true,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "応用電子",
       "grade": "",
       "organization": "",
       "building": "1",
       "floor": "4",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1790925658926_t6vkam66",
@@ -578,14 +578,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": true,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "専門電気",
       "grade": "",
       "organization": "",
       "building": "2",
       "floor": "1",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1792125448925_7mpxpwjb",
@@ -603,14 +603,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": true,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "その他",
       "grade": "",
       "organization": "岡山センター",
       "building": "本館",
       "floor": "2",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1792125632800_uc26wc4y",
@@ -628,14 +628,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "専門電気",
       "grade": "1",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1792125780294_fns876ve",
@@ -653,14 +653,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "その他",
       "grade": "",
       "organization": "警察",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1792125841938_lip6e0ru",
@@ -678,14 +678,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "その他",
       "grade": "",
       "organization": "自衛隊",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1792125957045_o1eoyx8w",
@@ -703,14 +703,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "その他",
       "grade": "",
       "organization": "自治会",
       "building": "体育館",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1792126072441_0r4j15dz",
@@ -728,14 +728,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "その他",
       "grade": "",
       "organization": "自治会",
       "building": "体育館",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1792126237454_8ttjbwvk",
@@ -753,14 +753,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "その他",
       "grade": "",
       "organization": "自治会",
       "building": "体育館",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1792126330409_toru5h3i",
@@ -778,14 +778,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "その他",
       "grade": "",
       "organization": "自治会",
       "building": "体育館",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1792126378642_5gdwascw",
@@ -803,14 +803,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "その他",
       "grade": "",
       "organization": "自治会",
       "building": "体育館",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1792126409740_t8yi79rf",
@@ -828,14 +828,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "その他",
       "grade": "",
       "organization": "自治会",
       "building": "体育館",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1792126435016_cp7hfuj3",
@@ -853,14 +853,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "その他",
       "grade": "",
       "organization": "全学年",
       "building": "体育館",
       "floor": "",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1792126532715_8bb92k3c",
@@ -878,14 +878,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": true,
+      "ticketEnabled": true,
+      "ticketUrl": "https://makosana.github.io/koukasai_seiriken/",
       "department": "応用機械",
       "grade": "",
       "organization": "",
       "building": "3",
       "floor": "1",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1792126876402_mmytaw49",
@@ -903,14 +903,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": true,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "専門機械",
       "grade": "",
       "organization": "",
       "building": "1",
       "floor": "1",
-      "detailsVersion": 2,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 2
     },
     {
       "id": "item_1792128334331_669d0urw",
@@ -928,14 +928,14 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": false,
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "",
       "grade": "",
       "organization": "",
       "building": "屋外",
       "floor": "",
-      "detailsVersion": 3,
-      "ticketEnabled": false,
-      "ticketUrl": ""
+      "detailsVersion": 3
     }
   ],
   "markers": [
