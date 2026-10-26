@@ -122,6 +122,8 @@
                         <label>定員<input id="capacityInput" maxlength="80" placeholder="例：各回10名・先着順"></label>
                     </fieldset>
                     <label id="catchCopyField">キャッチコピー<input id="catchCopyInput" maxlength="120" placeholder="模擬店のおすすめを短い言葉で紹介"></label>
+                    <label id="ticketToggle" class="experience-info-toggle"><input id="ticketEnabledInput" type="checkbox">整理券を使う（詳細画面にQRとボタンを出す）</label>
+                    <label id="ticketUrlField" hidden>整理券のURL<input id="ticketUrlInput" type="url" maxlength="300" pattern="https://.+" placeholder="https://makosana.github.io/koukasai_seiriken/"></label>
                     <label class="description-field" id="descriptionField">説明文 <em>必須</em><textarea id="descriptionInput" name="description" required maxlength="1200" placeholder="企画・展示の内容を入力"></textarea></label>
                 </div>
                 <footer class="panel-footer"><button type="button" id="cancelDetailButton">取り消し</button><button type="submit" id="confirmDetailButton" class="primary">決定</button></footer>

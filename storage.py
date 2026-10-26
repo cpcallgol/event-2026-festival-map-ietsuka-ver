@@ -78,6 +78,8 @@ DEFAULT_RECOMMENDATIONS = {
     "backgroundColor": "#fffdf7", "textColor": "#392b26",
     "autoRotate": True, "intervalSeconds": 7, "itemIds": None,
 }
+DEFAULT_TICKET_URL = "https://makosana.github.io/koukasai_seiriken/"
+TICKET_URL_MAX = 300
 
 
 class RevisionConflict(ValueError):
@@ -123,6 +125,8 @@ def upgrade_guide(source: dict[str, Any]) -> dict[str, Any]:
         for field in EXTRA_ITEM_FIELDS:
             item.setdefault(field, "")
         item.setdefault("experienceInfoEnabled", item.get("type") != "facility" and any(item.get(field) for field in EXPERIENCE_FIELDS))
+        item.setdefault("ticketEnabled", False)
+        item.setdefault("ticketUrl", "")
     used_labels = {marker.get("label") for marker in guide["markers"] if marker.get("kind") == "pin"}
     linked = {item["id"]: item for item in guide["items"]}
     for marker in guide["markers"]:
@@ -253,6 +257,20 @@ def _facility_details(raw: dict[str, Any], previous: dict[str, Any] | None) -> d
     elif details["floor"]:
         raise ValueError("体育館・屋外を選択した場合、階は指定できません。")
     return {**details, "detailsVersion": 3}
+
+
+def _ticket_link(raw: dict[str, Any], item_type: str) -> dict[str, Any]:
+    enabled = raw.get("ticketEnabled", False)
+    if not isinstance(enabled, bool):
+        raise ValueError("整理券の表示設定が正しくありません。")
+    url = _text(raw.get("ticketUrl", ""), "整理券のURL", TICKET_URL_MAX, allow_empty=True)
+    if item_type == "facility":
+        return {"ticketEnabled": False, "ticketUrl": ""}
+    if enabled and not url:
+        url = DEFAULT_TICKET_URL
+    if url and (not url.startswith("https://") or len(url) <= len("https://") or any(char.isspace() or ord(char) < 32 for char in url)):
+        raise ValueError("整理券のURLは https:// で始まるアドレスを入力してください。")
+    return {"ticketEnabled": enabled, "ticketUrl": url}
 
 
 def _text(value: Any, name: str, maximum: int, *, allow_empty: bool = False) -> str:
@@ -426,6 +444,7 @@ def validate_guide(payload: Any, current: dict[str, Any]) -> dict[str, Any]:
         if not isinstance(enabled, bool):
             raise ValueError("体験案内の表示設定が正しくありません。")
         item["experienceInfoEnabled"] = enabled if item_type != "facility" else False
+        item.update(_ticket_link(raw, item_type))
         if item_type != "facility":
             item.update(_event_details(raw, previous_items.get(item_id)))
         else:

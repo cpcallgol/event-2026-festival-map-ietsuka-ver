@@ -29,6 +29,7 @@ const FACILITY_ICONS = [
     {name: "ウォーターサーバー", path: "library/ウォーターサーバー.png"},
 ];
 const ARROW_ASSET = {name: "矢印", path: "floors/矢印.png"};
+const DEFAULT_TICKET_URL = "https://makosana.github.io/koukasai_seiriken/";
 const DETAIL_INPUT_FIELDS = ["title", "department", "grade", "organization", "building", "floor", "description", "duration", "schedule", "targetAudience", "capacity", "catchCopy"];
 let toastTimer;
 
@@ -417,11 +418,13 @@ function renderIconList() {
 function beginDraft(image, existing = null, initial = {}) {
     const marker = markerById(state.openMarkerId); if (!marker || state.draft || state.busy) return;
     if (!existing && state.guide.items.length >= 500) { toast("企画は500件以内で登録してください。", true); return; }
-    state.draft = existing ? clone(existing) : {id: uid("item"), type: marker.usage, categoryId: marker.categoryId, title: "", image, department: "", grade: "", organization: "", building: "", floor: "", organizer: "", description: "", waitState: "none", waitMinutes: null, experienceInfoEnabled: false, ...initial};
+    state.draft = existing ? clone(existing) : {id: uid("item"), type: marker.usage, categoryId: marker.categoryId, title: "", image, department: "", grade: "", organization: "", building: "", floor: "", organizer: "", description: "", waitState: "none", waitMinutes: null, experienceInfoEnabled: false, ticketEnabled: false, ticketUrl: "", ...initial};
     state.draft.isNew = !existing;
     $("detailForm").reset();
     for (const field of DETAIL_INPUT_FIELDS) { $(`${field}Input`).value = state.draft[field] || ""; $(`${field}Input`).setCustomValidity(""); }
     $("experienceInfoEnabledInput").checked = state.draft.experienceInfoEnabled === true;
+    $("ticketEnabledInput").checked = state.draft.ticketEnabled === true;
+    $("ticketUrlInput").value = state.draft.ticketUrl || DEFAULT_TICKET_URL;
     $("detailImage").src = assetUrl(state.draft.image);
     $("legacyNotice").hidden = !existing || existing.detailsVersion >= (state.draft.type === "facility" ? 3 : 2);
     syncDraftForm(); syncDepartment(); syncBuilding(); closeCategory(); renderPanel();
@@ -440,6 +443,10 @@ function syncDraftForm() {
     $("experienceInfoEnabledInput").disabled = facility;
     if (facility) $("experienceInfoEnabledInput").checked = false;
     syncExperienceInfo();
+    $("ticketToggle").hidden = facility;
+    $("ticketEnabledInput").disabled = facility;
+    if (facility) $("ticketEnabledInput").checked = false;
+    syncTicket();
     $("catchCopyField").hidden = facility || state.draft?.type !== "stall";
     $("departmentInput").required = !facility;
     $("descriptionInput").required = !facility;
@@ -453,6 +460,12 @@ function syncExperienceInfo() {
     const enabled = state.draft?.type !== "facility" && $("experienceInfoEnabledInput").checked;
     $("experienceDetailsFields").hidden = !enabled;
     $("experienceDetailsFields").disabled = !enabled;
+}
+function syncTicket() {
+    const enabled = state.draft?.type !== "facility" && $("ticketEnabledInput").checked;
+    $("ticketUrlField").hidden = !enabled;
+    $("ticketUrlInput").disabled = !enabled;
+    $("ticketUrlInput").required = enabled;
 }
 function syncDepartment() {
     if (state.draft?.type === "facility") {
@@ -487,6 +500,8 @@ function confirmDraft(event) {
     const item = clone(state.draft); delete item.isNew;
     for (const field of DETAIL_INPUT_FIELDS) item[field] = $(`${field}Input`).value.trim();
     item.experienceInfoEnabled = item.type !== "facility" && $("experienceInfoEnabledInput").checked;
+    item.ticketEnabled = item.type !== "facility" && $("ticketEnabledInput").checked;
+    item.ticketUrl = item.ticketEnabled ? $("ticketUrlInput").value.trim() : "";
     if (item.type === "facility") {
         item.department = ""; item.grade = ""; item.organization = ""; item.organizer = ""; item.description = ""; item.detailsVersion = 3;
         for (const field of ["duration", "schedule", "targetAudience", "capacity"]) item[field] = "";
@@ -839,6 +854,7 @@ function bindEvents() {
         markDirty(); toast("おすすめの表示設定を変更しました。「すべて保存」で反映されます。");
     });
     $("experienceInfoEnabledInput").addEventListener("change", syncExperienceInfo);
+    $("ticketEnabledInput").addEventListener("change", syncTicket);
     $("guidePinButton").addEventListener("click", async () => {
         const marker = markerById(state.selectedMarkerId);
         if (!marker || marker.kind !== "image" || marker.usage !== "decoration" || state.busy || state.draft || state.numbering) return;

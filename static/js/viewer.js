@@ -652,12 +652,40 @@ function playSelectionEffect(marker) {
     }
 }
 
+function ticketUrlFor(item) {
+    if (item.type === "facility" || item.ticketEnabled !== true) return "";
+    const url = String(item.ticketUrl || "");
+    return /^https:\/\/\S+$/.test(url) ? url : "";
+}
+
+function createQrSvg(text) {
+    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("role", "img");
+    svg.setAttribute("aria-label", "整理券のQRコード");
+    if (typeof qrcode !== "function") return svg;
+    const code = qrcode(0, "M");
+    code.addData(text);
+    code.make();
+    const count = code.getModuleCount(), margin = 2, size = count + margin * 2;
+    let path = "";
+    for (let row = 0; row < count; row++) {
+        for (let column = 0; column < count; column++) {
+            if (code.isDark(row, column)) path += `M${column + margin} ${row + margin}h1v1h-1z`;
+        }
+    }
+    svg.setAttribute("viewBox", `0 0 ${size} ${size}`);
+    svg.setAttribute("shape-rendering", "crispEdges");
+    svg.innerHTML = `<rect width="${size}" height="${size}" fill="#fff"/><path d="${path}" fill="#000"/>`;
+    return svg;
+}
+
 function renderItemDetail(item) {
     const category = categoryById(item.categoryId);
     const marker = markerForItem(item.id);
     const wait = ["stall", "facility"].includes(item.type) ? "" : waitText(item);
     const description = item.type === "facility" ? "" : item.description || "詳しい案内は会場でご確認ください。";
     const showExperience = item.type !== "facility" && item.experienceInfoEnabled === true;
+    const ticketUrl = ticketUrlFor(item);
     elements.detailContent.innerHTML = `
         <article class="detail-event" style="--category-color:${category?.color || "#7c4b36"}">
             <div class="detail-image" id="detailImageHost"></div>
@@ -674,6 +702,14 @@ function renderItemDetail(item) {
                 ${wait ? `<div class="detail-wait ${["closed", "soldout"].includes(item.waitState) ? "is-closed" : ""}"><b>状況</b><span>${escapeHtml(wait)}</span></div>` : ""}
             </div>
             ${description ? `<p class="detail-description">${escapeHtml(description)}</p>` : ""}
+            ${ticketUrl ? `<section class="detail-ticket" aria-label="整理券">
+                <div class="detail-ticket-qr" id="detailTicketQr"></div>
+                <div class="detail-ticket-text">
+                    <strong>整理券が必要です</strong>
+                    <p>スマートフォンでQRコードを読み取って整理券を取ってください</p>
+                    <a class="detail-ticket-link" href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener">整理券を取る</a>
+                </div>
+            </section>` : ""}
             <div class="detail-back-row"><button class="detail-back-button" type="button" data-detail-back>戻る</button></div>
         </article>`;
     const imageHost = elements.detailContent.querySelector("#detailImageHost");
@@ -689,6 +725,7 @@ function renderItemDetail(item) {
         preview.append(createPinSvg(marker.label, marker.color));
         imageHost.append(preview);
     }
+    if (ticketUrl) elements.detailContent.querySelector("#detailTicketQr").append(createQrSvg(ticketUrl));
     elements.detailContent.querySelector("[data-detail-back]").addEventListener("click", () => {
         if (state.detailReturnPinId && state.guide.markers.some((entry) => entry.id === state.detailReturnPinId)) selectPin(state.detailReturnPinId, state.detailReturnCategory);
         else selectCategory(state.detailReturnCategory || "all");
