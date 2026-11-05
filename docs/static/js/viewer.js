@@ -707,7 +707,6 @@ function renderItemDetail(item) {
                 <div class="detail-ticket-text">
                     <strong>整理券が必要です</strong>
                     <p>スマートフォンでQRコードを読み取って整理券を取ってください</p>
-                    <a class="detail-ticket-link" href="${escapeHtml(ticketUrl)}" target="_blank" rel="noopener">整理券を取る</a>
                 </div>
             </section>` : ""}
             <div class="detail-back-row"><button class="detail-back-button" type="button" data-detail-back>戻る</button></div>

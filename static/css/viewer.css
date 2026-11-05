@@ -571,20 +571,6 @@ button:focus-visible { outline: 4px solid #256fb0; outline-offset: 3px; }
 .detail-ticket-text { display: grid; gap: 6px; min-width: 0; }
 .detail-ticket-text strong { color: var(--category-color); font-size: 18px; }
 .detail-ticket-text p { margin: 0; color: #625149; font-size: 14px; line-height: 1.6; }
-.detail-ticket-link {
-    justify-self: start;
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
-    padding: 6px 16px;
-    border-radius: 10px;
-    color: #fff;
-    background: var(--category-color);
-    font-size: 15px;
-    font-weight: 900;
-    text-decoration: none;
-}
-.detail-ticket-link:active { transform: translateY(1px); }
 
 .venue-list {
     display: flex;
