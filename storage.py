@@ -78,7 +78,7 @@ DEFAULT_RECOMMENDATIONS = {
     "backgroundColor": "#fffdf7", "textColor": "#392b26",
     "autoRotate": True, "intervalSeconds": 7, "itemIds": None,
 }
-DEFAULT_TICKET_URL = "https://makosana.github.io/koukasai_seiriken/"
+DEFAULT_TICKET_URL = "https://cpcallgol.github.io/event-2026-festival-seiriken/"
 TICKET_URL_MAX = 300
 
 

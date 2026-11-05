@@ -29,7 +29,7 @@ const FACILITY_ICONS = [
     {name: "ウォーターサーバー", path: "library/ウォーターサーバー.png"},
 ];
 const ARROW_ASSET = {name: "矢印", path: "floors/矢印.png"};
-const DEFAULT_TICKET_URL = "https://makosana.github.io/koukasai_seiriken/";
+const DEFAULT_TICKET_URL = "https://cpcallgol.github.io/event-2026-festival-seiriken/";
 const DETAIL_INPUT_FIELDS = ["title", "department", "grade", "organization", "building", "floor", "description", "duration", "schedule", "targetAudience", "capacity", "catchCopy"];
 let toastTimer;
 
