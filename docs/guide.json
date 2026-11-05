@@ -1,6 +1,6 @@
 {
   "schemaVersion": 9,
-  "revision": 57,
+  "revision": 58,
   "settings": {
     "title": "紅華祭",
     "subtitle": "ものづくりフェスタ",
@@ -504,7 +504,7 @@
       "catchCopy": "",
       "experienceInfoEnabled": true,
       "ticketEnabled": true,
-      "ticketUrl": "https://makosana.github.io/koukasai_seiriken/",
+      "ticketUrl": "https://cpcallgol.github.io/event-2026-festival-seiriken/",
       "department": "応用電気",
       "grade": "",
       "organization": "",
