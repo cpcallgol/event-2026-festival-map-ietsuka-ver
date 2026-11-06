@@ -1,6 +1,6 @@
 {
   "schemaVersion": 9,
-  "revision": 65,
+  "revision": 66,
   "settings": {
     "title": "紅華祭",
     "subtitle": "ものづくりフェスタ",
@@ -910,6 +910,31 @@
       "building": "屋外",
       "floor": "",
       "detailsVersion": 3
+    },
+    {
+      "id": "item_1793944180677_0o80uh72",
+      "type": "experience",
+      "categoryId": "experience",
+      "title": "ブラシロボットを作ろう！",
+      "organizer": "専門電気",
+      "description": "60分です",
+      "waitState": "none",
+      "waitMinutes": null,
+      "image": "uploads/e230e0c492bc_image.png",
+      "duration": "60分",
+      "schedule": "10:00 / 11:00 / 12:00 / 13:00",
+      "targetAudience": "未就学児・小学生",
+      "capacity": "各回10名",
+      "catchCopy": "",
+      "experienceInfoEnabled": true,
+      "ticketEnabled": false,
+      "ticketUrl": "",
+      "department": "専門電気",
+      "grade": "",
+      "organization": "",
+      "building": "2",
+      "floor": "1",
+      "detailsVersion": 2
     }
   ],
   "markers": [
@@ -1006,8 +1031,10 @@
     },
     {
       "id": "marker_1790923630578_j0le7tmz",
-      "itemId": null,
-      "itemIds": [],
+      "itemId": "item_1793944180677_0o80uh72",
+      "itemIds": [
+        "item_1793944180677_0o80uh72"
+      ],
       "usage": "experience",
       "kind": "pin",
       "categoryId": "experience",
