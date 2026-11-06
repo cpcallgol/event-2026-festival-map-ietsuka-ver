@@ -36,7 +36,7 @@ window.RecommendationEditor = (() => {
         if (item.image) { const image = document.createElement("img"); image.src = imageUrl(item.image); image.alt = ""; host.append(image); }
         const text = document.createElement("div"), title = document.createElement("strong"), copy = document.createElement("p");
         title.textContent = item.title;
-        copy.textContent = copies[item.id] || item.description || "画像をタッチして内容と場所をご確認ください。";
+        copy.textContent = copies[item.id] || (item.descriptionEnabled !== false ? item.description : "") || "画像をタッチして内容と場所をご確認ください。";
         text.append(title, copy); host.append(text);
     }
 

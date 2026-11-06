@@ -448,7 +448,7 @@ function updateCatchCopy() {
     host.disabled = false; host.dataset.itemId = item.id;
     const text = document.createElement("span"); text.className = "catchcopy-text";
     const title = document.createElement("strong"); title.textContent = item.title;
-    const copy = document.createElement("span"); copy.textContent = item.catchCopy || item.description || "画像をタッチして内容と場所をご確認ください。";
+    const copy = document.createElement("span"); copy.textContent = item.catchCopy || visibleDescription(item) || "画像をタッチして内容と場所をご確認ください。";
     text.append(title, copy); host.replaceChildren(createItemVisual(item, "catchcopy-image"), text);
     document.getElementById("catchCopyCounter").textContent = (state.catchCopyIndex + 1) + " / " + items.length;
 }
@@ -652,6 +652,10 @@ function playSelectionEffect(marker) {
     }
 }
 
+function visibleDescription(item) {
+    return item.type !== "facility" && item.descriptionEnabled !== false ? item.description || "" : "";
+}
+
 function ticketUrlFor(item) {
     if (item.type === "facility" || item.ticketEnabled !== true) return "";
     const url = String(item.ticketUrl || "");
@@ -683,7 +687,7 @@ function renderItemDetail(item) {
     const category = categoryById(item.categoryId);
     const marker = markerForItem(item.id);
     const wait = ["stall", "facility"].includes(item.type) ? "" : waitText(item);
-    const description = item.type === "facility" ? "" : item.description || "詳しい案内は会場でご確認ください。";
+    const description = visibleDescription(item);
     const showExperience = item.type !== "facility" && item.experienceInfoEnabled === true;
     const ticketUrl = ticketUrlFor(item);
     elements.detailContent.innerHTML = `

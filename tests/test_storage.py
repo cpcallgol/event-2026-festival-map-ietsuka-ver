@@ -88,7 +88,7 @@ class GuideStorageTests(unittest.TestCase):
         self.assertEqual(result["items"][-2]["floor"], "2")
 
     def test_all_new_event_details_are_required(self):
-        fields = ["title", "image", "department", "building", "floor", "description"]
+        fields = ["title", "image", "department", "building", "floor"]
         for field in fields:
             with self.subTest(field=field):
                 self.guide = deepcopy(self.current)

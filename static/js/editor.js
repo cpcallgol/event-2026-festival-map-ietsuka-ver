@@ -418,11 +418,12 @@ function renderIconList() {
 function beginDraft(image, existing = null, initial = {}) {
     const marker = markerById(state.openMarkerId); if (!marker || state.draft || state.busy) return;
     if (!existing && state.guide.items.length >= 500) { toast("企画は500件以内で登録してください。", true); return; }
-    state.draft = existing ? clone(existing) : {id: uid("item"), type: marker.usage, categoryId: marker.categoryId, title: "", image, department: "", grade: "", organization: "", building: "", floor: "", organizer: "", description: "", waitState: "none", waitMinutes: null, experienceInfoEnabled: false, ticketEnabled: false, ticketUrl: "", ...initial};
+    state.draft = existing ? clone(existing) : {id: uid("item"), type: marker.usage, categoryId: marker.categoryId, title: "", image, department: "", grade: "", organization: "", building: "", floor: "", organizer: "", description: "", descriptionEnabled: true, waitState: "none", waitMinutes: null, experienceInfoEnabled: false, ticketEnabled: false, ticketUrl: "", ...initial};
     state.draft.isNew = !existing;
     $("detailForm").reset();
     for (const field of DETAIL_INPUT_FIELDS) { $(`${field}Input`).value = state.draft[field] || ""; $(`${field}Input`).setCustomValidity(""); }
     $("experienceInfoEnabledInput").checked = state.draft.experienceInfoEnabled === true;
+    $("descriptionEnabledInput").checked = state.draft.descriptionEnabled !== false;
     $("ticketEnabledInput").checked = state.draft.ticketEnabled === true;
     $("ticketUrlInput").value = state.draft.ticketUrl || DEFAULT_TICKET_URL;
     $("detailImage").src = assetUrl(state.draft.image);
@@ -438,7 +439,10 @@ function syncDraftForm() {
     $("titleInput").placeholder = facility ? "施設名を入力" : "企画・展示名を入力";
     $("departmentFields").hidden = facility;
     $("organizationField").hidden = facility;
-    $("descriptionField").hidden = facility;
+    $("descriptionToggle").hidden = facility;
+    $("descriptionEnabledInput").disabled = facility;
+    if (facility) $("descriptionEnabledInput").checked = false;
+    syncDescription();
     $("experienceInfoToggle").hidden = facility;
     $("experienceInfoEnabledInput").disabled = facility;
     if (facility) $("experienceInfoEnabledInput").checked = false;
@@ -449,9 +453,7 @@ function syncDraftForm() {
     syncTicket();
     $("catchCopyField").hidden = facility || state.draft?.type !== "stall";
     $("departmentInput").required = !facility;
-    $("descriptionInput").required = !facility;
     $("departmentInput").disabled = facility;
-    $("descriptionInput").disabled = facility;
     if (facility) {
         $("departmentInput").value = ""; $("gradeInput").value = ""; $("organizationInput").value = ""; $("descriptionInput").value = "";
     }
@@ -460,6 +462,11 @@ function syncExperienceInfo() {
     const enabled = state.draft?.type !== "facility" && $("experienceInfoEnabledInput").checked;
     $("experienceDetailsFields").hidden = !enabled;
     $("experienceDetailsFields").disabled = !enabled;
+}
+function syncDescription() {
+    const enabled = state.draft?.type !== "facility" && $("descriptionEnabledInput").checked;
+    $("descriptionField").hidden = !enabled;
+    $("descriptionInput").disabled = !enabled;
 }
 function syncTicket() {
     const enabled = state.draft?.type !== "facility" && $("ticketEnabledInput").checked;
@@ -500,6 +507,7 @@ function confirmDraft(event) {
     const item = clone(state.draft); delete item.isNew;
     for (const field of DETAIL_INPUT_FIELDS) item[field] = $(`${field}Input`).value.trim();
     item.experienceInfoEnabled = item.type !== "facility" && $("experienceInfoEnabledInput").checked;
+    item.descriptionEnabled = item.type !== "facility" && $("descriptionEnabledInput").checked;
     item.ticketEnabled = item.type !== "facility" && $("ticketEnabledInput").checked;
     item.ticketUrl = item.ticketEnabled ? $("ticketUrlInput").value.trim() : "";
     if (item.type === "facility") {
@@ -855,6 +863,7 @@ function bindEvents() {
     });
     $("experienceInfoEnabledInput").addEventListener("change", syncExperienceInfo);
     $("ticketEnabledInput").addEventListener("change", syncTicket);
+    $("descriptionEnabledInput").addEventListener("change", syncDescription);
     $("guidePinButton").addEventListener("click", async () => {
         const marker = markerById(state.selectedMarkerId);
         if (!marker || marker.kind !== "image" || marker.usage !== "decoration" || state.busy || state.draft || state.numbering) return;

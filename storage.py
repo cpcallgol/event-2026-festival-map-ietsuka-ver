@@ -125,6 +125,7 @@ def upgrade_guide(source: dict[str, Any]) -> dict[str, Any]:
         for field in EXTRA_ITEM_FIELDS:
             item.setdefault(field, "")
         item.setdefault("experienceInfoEnabled", item.get("type") != "facility" and any(item.get(field) for field in EXPERIENCE_FIELDS))
+        item.setdefault("descriptionEnabled", item.get("type") != "facility")
         item.setdefault("ticketEnabled", False)
         item.setdefault("ticketUrl", "")
     used_labels = {marker.get("label") for marker in guide["markers"] if marker.get("kind") == "pin"}
@@ -236,7 +237,6 @@ def _event_details(raw: dict[str, Any], previous: dict[str, Any] | None) -> dict
             raise ValueError("1〜9号棟を選択した場合は階を選択してください。")
     elif details["floor"]:
         raise ValueError("体育館・屋外を選択した場合、階は指定できません。")
-    _text(raw.get("description", ""), "説明文", 1200)
     _asset_path(raw.get("image"), required=True)
     return {**details, "organizer": organizer, "detailsVersion": 2}
 
@@ -444,6 +444,10 @@ def validate_guide(payload: Any, current: dict[str, Any]) -> dict[str, Any]:
         if not isinstance(enabled, bool):
             raise ValueError("体験案内の表示設定が正しくありません。")
         item["experienceInfoEnabled"] = enabled if item_type != "facility" else False
+        description_enabled = raw.get("descriptionEnabled", item_type != "facility")
+        if not isinstance(description_enabled, bool):
+            raise ValueError("説明文の表示設定が正しくありません。")
+        item["descriptionEnabled"] = description_enabled if item_type != "facility" else False
         item.update(_ticket_link(raw, item_type))
         if item_type != "facility":
             item.update(_event_details(raw, previous_items.get(item_id)))
