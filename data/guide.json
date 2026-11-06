@@ -1,6 +1,6 @@
 {
   "schemaVersion": 9,
-  "revision": 63,
+  "revision": 64,
   "settings": {
     "title": "紅華祭",
     "subtitle": "ものづくりフェスタ",
@@ -502,8 +502,8 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": true,
-      "ticketEnabled": true,
-      "ticketUrl": "https://cpcallgol.github.io/event-2026-festival-seiriken/",
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "応用電気",
       "grade": "",
       "organization": "",
@@ -527,8 +527,8 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": true,
-      "ticketEnabled": true,
-      "ticketUrl": "https://cpcallgol.github.io/event-2026-festival-seiriken/",
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "専門電子",
       "grade": "",
       "organization": "",
@@ -552,8 +552,8 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": true,
-      "ticketEnabled": true,
-      "ticketUrl": "https://cpcallgol.github.io/event-2026-festival-seiriken/",
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "応用電子",
       "grade": "",
       "organization": "",
@@ -852,8 +852,8 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": true,
-      "ticketEnabled": true,
-      "ticketUrl": "https://cpcallgol.github.io/event-2026-festival-seiriken/",
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "応用機械",
       "grade": "",
       "organization": "",
@@ -877,8 +877,8 @@
       "capacity": "",
       "catchCopy": "",
       "experienceInfoEnabled": true,
-      "ticketEnabled": true,
-      "ticketUrl": "https://cpcallgol.github.io/event-2026-festival-seiriken/",
+      "ticketEnabled": false,
+      "ticketUrl": "",
       "department": "専門機械",
       "grade": "",
       "organization": "",
@@ -910,31 +910,6 @@
       "building": "屋外",
       "floor": "",
       "detailsVersion": 3
-    },
-    {
-      "id": "item_1793933376113_1dzifvks",
-      "type": "experience",
-      "categoryId": "experience",
-      "title": "ブラシロボット",
-      "organizer": "専門電気",
-      "description": "ブラシで動かせぶんぶんブラシカー",
-      "waitState": "none",
-      "waitMinutes": null,
-      "image": "uploads/1130cb77acc0_image.png",
-      "duration": "60分",
-      "schedule": "10:00 / 11:00 / 12:00 / 13:00",
-      "targetAudience": "未就学児・小学生",
-      "capacity": "各回10名",
-      "catchCopy": "",
-      "experienceInfoEnabled": true,
-      "ticketEnabled": true,
-      "ticketUrl": "https://cpcallgol.github.io/event-2026-festival-seiriken/",
-      "department": "専門電気",
-      "grade": "",
-      "organization": "",
-      "building": "2",
-      "floor": "1",
-      "detailsVersion": 2
     }
   ],
   "markers": [
@@ -1031,10 +1006,8 @@
     },
     {
       "id": "marker_1790923630578_j0le7tmz",
-      "itemId": "item_1793933376113_1dzifvks",
-      "itemIds": [
-        "item_1793933376113_1dzifvks"
-      ],
+      "itemId": null,
+      "itemIds": [],
       "usage": "experience",
       "kind": "pin",
       "categoryId": "experience",
@@ -1388,23 +1361,7 @@
       "building": "2",
       "floor": "1",
       "image": "floors/2号棟1階.png",
-      "markers": [
-        {
-          "id": "floor_1793933737256_w71x3bod",
-          "kind": "item",
-          "itemId": "item_1793933376113_1dzifvks",
-          "image": null,
-          "text": "",
-          "color": "#0064c8",
-          "x": 29.543,
-          "y": 50.827,
-          "size": 83.0,
-          "rotation": 0.0,
-          "layer": 1,
-          "locked": false,
-          "trimImage": true
-        }
-      ]
+      "markers": []
     },
     {
       "id": "building2_floor2",
