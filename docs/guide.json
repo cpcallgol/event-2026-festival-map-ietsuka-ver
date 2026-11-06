@@ -1,6 +1,6 @@
 {
   "schemaVersion": 9,
-  "revision": 67,
+  "revision": 68,
   "settings": {
     "title": "紅華祭",
     "subtitle": "ものづくりフェスタ",
@@ -1412,7 +1412,23 @@
       "building": "2",
       "floor": "1",
       "image": "floors/2号棟1階.png",
-      "markers": [],
+      "markers": [
+        {
+          "id": "floor_1793944360503_c24xg7g5",
+          "kind": "item",
+          "itemId": "item_1793944180677_0o80uh72",
+          "image": null,
+          "text": "",
+          "color": "#0064c8",
+          "x": 30.711,
+          "y": 50.413,
+          "size": 73.0,
+          "rotation": 0.0,
+          "layer": 1,
+          "locked": false,
+          "trimImage": true
+        }
+      ],
       "contentBounds": {
         "x": 0.085,
         "y": 0.28514150943396227,
