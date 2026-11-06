@@ -29,7 +29,14 @@ body {
     background: #2f2824;
     font-family: "Yu Gothic UI", "Yu Gothic", "Meiryo", sans-serif;
     -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
 }
+
+html, body { overscroll-behavior: none; }
+img, svg { -webkit-user-drag: none; }
 
 button { font: inherit; }
 button, [role="button"] { touch-action: manipulation; }

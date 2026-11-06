@@ -822,32 +822,60 @@ async function refreshGuide() {
     }
 }
 
+const SECRET_EXIT_TAPS = 10;
+const SECRET_EXIT_MAX_GAP_MS = 1000;
+const IDLE_RESET_MS = 90 * 1000;
+
 function setupFullscreenButton() {
     const button = document.getElementById("fullscreenButton");
+    const brand = document.querySelector(".topbar .brand");
     const root = document.documentElement;
     const request = root.requestFullscreen || root.webkitRequestFullscreen;
     const exit = document.exitFullscreen || document.webkitExitFullscreen;
     const launchedFromHomeScreen = navigator.standalone || matchMedia("(display-mode: standalone), (display-mode: fullscreen)").matches;
     if (!request || !exit || launchedFromHomeScreen) return;
     const active = () => Boolean(document.fullscreenElement || document.webkitFullscreenElement);
+    // Visitors must not be able to leave fullscreen from the page; staff use the hidden brand taps.
     const sync = () => {
-        button.querySelector("span").textContent = active() ? "全画面を解除" : "全画面";
-        button.setAttribute("aria-pressed", String(active()));
+        button.hidden = active();
         requestAnimationFrame(fitCanvas);
     };
-    button.addEventListener("click", () => {
-        const result = active() ? exit.call(document) : request.call(root);
-        result?.catch?.(() => {});
+    button.addEventListener("click", () => request.call(root)?.catch?.(() => {}));
+    let taps = 0, lastTap = 0;
+    brand.addEventListener("pointerup", () => {
+        if (!active()) return;
+        const now = Date.now();
+        taps = now - lastTap <= SECRET_EXIT_MAX_GAP_MS ? taps + 1 : 1;
+        lastTap = now;
+        if (taps < SECRET_EXIT_TAPS) return;
+        taps = 0;
+        exit.call(document)?.catch?.(() => {});
     });
     document.addEventListener("fullscreenchange", sync);
     document.addEventListener("webkitfullscreenchange", sync);
-    button.hidden = false;
     sync();
+}
+
+function setupKioskGuards() {
+    document.addEventListener("contextmenu", (event) => event.preventDefault());
+    document.addEventListener("dragstart", (event) => event.preventDefault());
+    let idleTimer;
+    const restartIdleTimer = () => {
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => {
+            const floorDialog = document.getElementById("floorDialog");
+            if (floorDialog.open) floorDialog.close();
+            if (state.guide) resetAll();
+        }, IDLE_RESET_MS);
+    };
+    for (const type of ["pointerdown", "keydown", "wheel"]) document.addEventListener(type, restartIdleTimer, { passive: true });
+    restartIdleTimer();
 }
 
 function bindEvents() {
     initializeFloorViews();
     setupFullscreenButton();
+    setupKioskGuards();
     syncMotionControl();
     matchMedia("(prefers-reduced-motion: reduce)").addEventListener("change", syncMotionControl);
     window.addEventListener("resize", () => { fitCanvas(); if (document.getElementById("floorDialog").open) floorDialogView.resize(); });
